@@ -5,7 +5,7 @@ class Application
 
     if req.path.match(/items/)
       item = req.path.split('/items/').last
-      item_hash = Item.all.detect {|item| item_hash.name == item}
+      item_hash = Item.all.detect {|ele| ele.name == item}
       if item_hash 
         res.write item_hash.price
       else
