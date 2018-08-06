@@ -1,17 +1,13 @@
 class Application 
-    @@items = []
+   
    def call(env)
-      req = Rack::Request
-      res = Rack::Response 
+      req = Rack::Request.new(env)
+      res = Rack::Response.new 
       if req.path.match(/items/)
-        ans = req.params["item"]
-        if @@items.include?(ans)
-          res.write "#{res.price}"
+      ans = req.params.split('/item/').last
+      res.write "#{ans}" 
         
-      else 
-        res.status = 400
-      end 
-    end 
+     end 
       
      res.finish
    end 
