@@ -5,6 +5,7 @@ class Application
       res = Rack::Response.new 
       if req.path.match(/items/)
       ans = req.params.split('/item/').last
+      the_item = Ite
       res.write "#{ans}" 
         
      end 
