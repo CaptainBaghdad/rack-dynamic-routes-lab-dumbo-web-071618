@@ -1,22 +1,22 @@
 class Application
   def call(env)
-    response = Rack::Response.new
-    request = Rack::Request.new(env)
+    res = Rack::Response.new
+    req = Rack::Request.new(env)
 
-    if request.path.match(/items/)
-      item_name = request.path.split('/items/').last
-      item = Item.all.detect {|item| item.name == item_name}
-      if item
-        response.write item.price
+    if req.path.match(/items/)
+      item = req.path.split('/items/').last
+      item_hash = Item.all.detect {|item| item_hash.name == item}
+      if item_hash 
+        res.write item_hash.price
       else
-        response.write 'Item not found'
-        response.status = 400
+        res.write 'Item not found'
+        res.status = 400
       end
     else
-      response.write 'Route not found'
-      response.status = 404
+      res.write 'Route not found'
+      res.status = 404
     end
 
-    response.finish
+    res.finish
   end
 end
