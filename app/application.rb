@@ -12,7 +12,7 @@ class Application
        else 
          res.write 'Item not found'
         res.status = 400
-      end
+      
     else
       res.write 'Route not found'
       res.status = 404
